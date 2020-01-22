@@ -7,7 +7,22 @@ body.prepend(button);
 createCanvas();
 
 function changeDivColor() {
-    this.style.backgroundColor = 'black'
+    const randomR = Math.random()*255;
+    const randomG = Math.random()*255;
+    const randomB = Math.random()*255;
+    var currColor = this.style.backgroundColor;
+    if(currColor !== ""){
+        var start = currColor.indexOf('(');
+        var firstComma = currColor.indexOf(",");
+        var lastComma = currColor.lastIndexOf(",")
+        var end = currColor.indexOf(')')
+        var newR = parseInt(currColor.substring(start+1,firstComma))-(255*.1);
+        var newG = parseInt(currColor.substring(firstComma+1,lastComma))-(255*.1);
+        var newB = parseInt(currColor.substring(lastComma+1,end))-(255*.1);
+        this.style.backgroundColor = `rgb(${newR},${newG},${newB})`;
+    } else {
+        this.style.backgroundColor = `rgb(${randomR},${randomG},${randomB})`;
+    }
 }
 function createCanvas(x=16) {
     //Create divs and append to container
